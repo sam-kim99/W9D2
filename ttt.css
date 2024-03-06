@@ -1,1 +1,98 @@
 /* Your code here */
+
+html, body, figure, figcaption, ul, li, h1 {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    text-align: inherit;
+}
+
+h1 {
+    font-size: 60px;
+    margin: 30px;
+    font-family: fantasy;
+    text-align: center;
+}
+
+h2 {
+    font-size: 30px;
+    margin: 30px;
+    font-family: fantasy;
+    text-align: center;
+}
+.grid {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 30px auto;
+    width: 300px;
+    border: 5px solid black;
+}
+
+li {
+    display:flex;
+    justify-content: center;
+    width: 90px;
+    height: 90px;
+    border: 5px solid black;
+    background-color: darkslategray;
+    cursor: pointer;
+    font-family: fantasy;
+}
+
+li:hover {
+    background-color: dodgerblue;
+}
+
+.x:after {
+    content: "x";
+}
+  
+.o:after {
+    content: "o";
+}
+
+.x:after,
+.o:after {
+  /* width: 100%; */
+  font-size: 60px;
+  line-height: 80px;
+}
+
+.x {
+    background-color: pink;
+    cursor: default;
+}
+
+.o {
+    background-color: orange;
+    cursor: default;
+}
+
+.x:hover{
+  background: pink;
+}
+
+.o:hover {
+    background-color: orange;
+}
+
+.game-over li {
+    color: red;
+    cursor:default;
+    background-color:tomato; 
+}
+
+
+.winner-x .x,
+.winner-o .o {
+    color: black;
+    background-color: greenyellow;
+}
+
+figcaption {
+    text-align: center;
+    font-size: 150px;
+    font-family: fantasy;
+}
