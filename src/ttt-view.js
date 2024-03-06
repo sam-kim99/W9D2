@@ -1,10 +1,15 @@
+import CelebrationObj from "./celebration_obj";
+
 class View {
-  constructor(game, el) {
+  constructor(game, el, ctx) {
     this.game = game;
     this.el = el;
     this.handleClick = this.handleClick.bind(this);
     this.setupBoard();
     this.displayPlayer();
+    this.celebrationObjects = []
+
+    this.ctx = ctx
   }
   
   displayPlayer() {
@@ -42,6 +47,7 @@ class View {
     }
     square.classList.add(symbol);
     // this.game.isOver() && this.handleGameOver();
+    
     this.game.isOver() ? this.handleGameOver() : this.displayPlayer();
   }
   
@@ -53,18 +59,62 @@ class View {
     if (winner) {
       this.el.classList.add(`winner-${winner}`);
       msg.append(`You win, ${winner}!`);
+      console.log('hello?')
+      this.addConfetti();
+      console.log(this.celebrationObjects)
+      this.startCelebration();
     } else {
       msg.append("It's a draw!");
     }
     this.el.append(msg);
   }
 
-  celebration() {
-    let canvas = document.getElementById('obnoxious');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    let ctx = canvas.getContext('2d');
-    
+
+  addConfetti () {
+    while (this.celebrationObjects.length < CelebrationObj.PARTY_SIZE) {
+      let newConfetti = new CelebrationObj(this)
+      this.celebrationObjects.push(newConfetti)
+    }
+  }
+
+  moveConfetti() {
+    this.celebrationObjects.forEach ( (confetti) => {
+      confetti.move()
+    })
+  }
+
+  startCelebration () {
+    setInterval( (celebration) => {
+        this.moveConfetti()
+        this.draw(this.ctx)
+    }, 20)
+  }
+
+  draw(ctx){
+    this.ctx.clearRect(0,0, window.innerWidth, window.innerHeight)
+    this.celebrationObjects.forEach( (object) => {
+        object.draw(this.ctx)
+    })
+  }
+
+  wrap (pos){
+    if (pos[0] > window.innerWidth) {
+        pos[0] = 0
+        return pos
+    }
+    if (pos[1] > window.innerHeight){
+        pos[1] = 0
+        return pos
+    }
+    if (pos[0] < 0){
+        pos[0] = window.innerWidth
+        return pos
+    }
+    if (pos[1] < 0){
+        pos[1] = window.innerHeight
+        return pos
+    }
+    return pos
   }
 }
 

@@ -25,9 +25,10 @@ h2 {
     list-style: none;
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-evenly;
     margin: 30px auto;
     width: 300px;
-    border: 5px solid black;
+    border: 6px solid black;
 }
 
 li {
@@ -96,4 +97,10 @@ figcaption {
     font-size: 150px;
     font-family: fantasy;
     color:magenta;
+}
+
+#obnoxious{
+    z-index: 1;
+    position:absolute;
+    pointer-events: none;
 }
