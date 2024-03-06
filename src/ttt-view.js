@@ -36,12 +36,13 @@ class View {
     const symbol = this.game.currentPlayer;
     try {
       this.game.playMove(pos)
-      this.displayPlayer();
+      // this.displayPlayer();
     } catch (t) {
       alert("This " + t.msg.toLowerCase())
     }
     square.classList.add(symbol);
-    this.game.isOver() && this.handleGameOver();
+    // this.game.isOver() && this.handleGameOver();
+    this.game.isOver() ? this.handleGameOver() : this.displayPlayer();
   }
   
   handleGameOver() {
@@ -56,6 +57,14 @@ class View {
       msg.append("It's a draw!");
     }
     this.el.append(msg);
+  }
+
+  celebration() {
+    let canvas = document.getElementById('obnoxious');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    let ctx = canvas.getContext('2d');
+    
   }
 }
 
