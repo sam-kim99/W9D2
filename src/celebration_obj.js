@@ -1,6 +1,6 @@
 class CelebrationObj {
     constructor(options) {
-        this.pos = 
+
     }
 }
 
